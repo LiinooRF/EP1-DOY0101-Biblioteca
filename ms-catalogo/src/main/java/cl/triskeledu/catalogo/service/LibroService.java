@@ -40,6 +40,10 @@ public class LibroService {
         return libroMapper.toResponseList(libroRepository.findAll());
     }
 
+    public long contarLibros() {
+        return libroRepository.count();
+    }
+
     public LibroResponse findById(long id) {
         return libroMapper.toResponse(getLibroById(id));
     }
