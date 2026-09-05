@@ -44,6 +44,10 @@ public class LibroService {
         return libroRepository.count();
     }
 
+    public List<LibroResponse> buscarPorTitulo(String titulo) {
+        return libroMapper.toResponseList(libroRepository.findByTituloContainingIgnoreCase(titulo));
+    }
+
     public LibroResponse findById(long id) {
         return libroMapper.toResponse(getLibroById(id));
     }
