@@ -645,4 +645,23 @@ class LibroServiceTest {
         // No se guarda porque la asociación ya existía.
         verify(libroRepository, never()).save(any(Libro.class));
     }
+
+    // ─────────────────────────────────────────────────────────────
+    // contarLibros
+    // ─────────────────────────────────────────────────────────────
+
+    @Test
+    void contarLibros_DeberiaRetornarLaCantidadDeLibros() {
+
+        // Simula que en la base hay 5 libros.
+        when(libroRepository.count()).thenReturn(5L);
+
+        long total = libroService.contarLibros();
+
+        // Verifica que devuelva la misma cantidad que entrego el repositorio.
+        assertEquals(5L, total);
+
+        // Verifica que se haya consultado el repositorio.
+        verify(libroRepository).count();
+    }
 }
