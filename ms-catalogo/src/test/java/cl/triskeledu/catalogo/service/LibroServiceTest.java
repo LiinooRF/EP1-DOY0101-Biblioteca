@@ -664,4 +664,27 @@ class LibroServiceTest {
         // Verifica que se haya consultado el repositorio.
         verify(libroRepository).count();
     }
+
+    // ─────────────────────────────────────────────────────────────
+    // buscarPorTitulo
+    // ─────────────────────────────────────────────────────────────
+
+    @Test
+    void buscarPorTitulo_DeberiaRetornarLosLibrosQueCoinciden() {
+
+        Libro libro = crearLibroSimulado(1L);
+
+        // Simula lo que devuelve el repositorio al buscar por titulo.
+        when(libroRepository.findByTituloContainingIgnoreCase("moby")).thenReturn(List.of(libro));
+
+        List<LibroResponse> resultado = libroService.buscarPorTitulo("moby");
+
+        // Verifica que devuelva el libro encontrado.
+        assertNotNull(resultado, "La lista retornada no debe ser nula");
+        assertEquals(1, resultado.size(), "Debe encontrar un solo libro");
+        assertEquals(libro.getTitulo(), resultado.get(0).getTitulo(), "El titulo debe coincidir");
+
+        // Verifica que se haya usado el metodo de busqueda del repositorio.
+        verify(libroRepository).findByTituloContainingIgnoreCase("moby");
+    }
 }
