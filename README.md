@@ -4,7 +4,7 @@ Repositorio del encargo de la Evaluación Parcial 1 de Ingeniería DevOps (DOY01
 
 **Integrantes:**
 - Lino (LiinooRF)
-- _(falta completar el nombre del segundo integrante)_
+- Arion (Kawyyz)
 
 ## De qué se trata
 
