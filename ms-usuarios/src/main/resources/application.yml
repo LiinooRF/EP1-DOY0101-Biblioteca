@@ -13,9 +13,9 @@ spring:
     active: dev                # Entorno por defecto al arrancar en local
   datasource:                  # ← dentro de spring, como corresponde
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://ip-host:3306/usuarios?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: user
-    password: pw              # ⚠️ Solo válido en local. NUNCA subir credenciales reales a Git.
+    url: jdbc:mysql://localhost:3306/recursos?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: ${DB_PASSWORD:root}              # ⚠️ Solo válido en local. NUNCA subir credenciales reales a Git.
 
   jpa:                         # ← dentro de spring, como corresponde
     database: mysql
