@@ -228,6 +228,6 @@ Referencia: https://bibliotecas.duoc.cl/ia
 
 _(escribir a mano, sin IA: qué aprendiste, qué te costó, en qué aportaste)_
 
-**Reflexión de _(integrante 2)_:**
+**Reflexión de Arion Ruiz-Tagle:**
 
-_(escribir a mano, sin IA: qué aprendiste, qué te costó, en qué aportaste)_
+Este trabajo me sirvio para aprender a hacer la conexion sobre todo de servicios AWS con cosas que trabajan localmente en el computador, es interesante e intuitivo de realizar, la parte que mas me cuesta generalmente es lo que tiene que ver con terminal pero hechando a perder se aprende.
