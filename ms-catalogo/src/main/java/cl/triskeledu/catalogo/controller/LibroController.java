@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cl.triskeledu.catalogo.dto.LibroRequest;
@@ -203,5 +204,32 @@ public class LibroController {
             @PathVariable String isbn) {
         // Endpoint utilitario (devuelve Boolean): no aplica HATEOAS
         return ResponseEntity.ok(libroService.existsByIsbn(isbn));
+    }
+
+    // ─── Contar libros ────────────────────────────────────────────────────────
+
+    @Operation(summary = "Contar libros", description = "Devuelve cuantos libros hay en el catalogo")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Cantidad obtenida correctamente",
+            content = @Content(schema = @Schema(implementation = Long.class)))
+    })
+    @GetMapping("/total")
+    public ResponseEntity<Long> contarLibros() {
+        // Devuelve solo un numero, no aplica HATEOAS
+        return ResponseEntity.ok(libroService.contarLibros());
+    }
+
+    // ─── Buscar por titulo ────────────────────────────────────────────────────
+
+    @Operation(summary = "Buscar libros por titulo", description = "Busca los libros cuyo titulo contenga el texto indicado")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Busqueda realizada correctamente",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = LibroResponse.class))))
+    })
+    @GetMapping("/buscar")
+    public ResponseEntity<List<LibroResponse>> buscarPorTitulo(
+            @Parameter(description = "Texto a buscar dentro del titulo", required = true, example = "Moby")
+            @RequestParam String titulo) {
+        return ResponseEntity.ok(libroService.buscarPorTitulo(titulo));
     }
 }

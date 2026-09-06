@@ -1,0 +1,50 @@
+# Pipeline de integracion continua del proyecto.
+# Se ejecuta solo cada vez que alguien hace push a develop o
+# cuando se abre un Pull Request hacia main o develop.
+name: CI - Compilacion y pruebas
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    name: Compilar y probar
+    runs-on: ubuntu-latest
+
+    steps:
+      # baja el codigo del repo al runner
+      - name: Descargar el codigo
+        uses: actions/checkout@v4
+
+      # el pom padre pide Java 21
+      - name: Instalar Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Compilar
+        run: mvn -B clean compile
+
+      # Las pruebas *ApplicationTests levantan todo el contexto de Spring y
+      # necesitan MySQL y Eureka andando, cosa que en el runner no hay, asi
+      # que en el pipeline corren solo las pruebas unitarias.
+      - name: Ejecutar pruebas unitarias
+        run: mvn -B test -Dtest='!*ApplicationTests' -Dsurefire.failIfNoSpecifiedTests=false
+
+      - name: Generar los .jar
+        run: mvn -B package -DskipTests
+
+      # deja los .jar para poder descargarlos desde la pestana Actions
+      - name: Guardar los .jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: jars-biblioteca
+          path: '*/target/*.jar'
