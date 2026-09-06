@@ -224,10 +224,8 @@ Referencia: https://bibliotecas.duoc.cl/ia
 
 ## Conclusiones
 
-**Reflexión de _(integrante 1)_:**
 
-_(escribir a mano, sin IA: qué aprendiste, qué te costó, en qué aportaste)_
-
-**Reflexión de Arion Ruiz-Tagle:**
+**Reflexión de grupo:**
 
 Este trabajo me sirvio para aprender a hacer la conexion sobre todo de servicios AWS con cosas que trabajan localmente en el computador, es interesante e intuitivo de realizar, la parte que mas me cuesta generalmente es lo que tiene que ver con terminal pero hechando a perder se aprende.
+el aporte fue de ambos, pero Lino hizo mas debido a temas de tiempo por parte de Arion, de todas formas, ambos contribuimos en el trabajo
