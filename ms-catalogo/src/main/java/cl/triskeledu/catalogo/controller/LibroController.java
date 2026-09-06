@@ -204,4 +204,17 @@ public class LibroController {
         // Endpoint utilitario (devuelve Boolean): no aplica HATEOAS
         return ResponseEntity.ok(libroService.existsByIsbn(isbn));
     }
+
+    // ─── Contar libros ────────────────────────────────────────────────────────
+
+    @Operation(summary = "Contar libros", description = "Devuelve cuantos libros hay en el catalogo")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Cantidad obtenida correctamente",
+            content = @Content(schema = @Schema(implementation = Long.class)))
+    })
+    @GetMapping("/total")
+    public ResponseEntity<Long> contarLibros() {
+        // Devuelve solo un numero, no aplica HATEOAS
+        return ResponseEntity.ok(libroService.contarLibros());
+    }
 }
